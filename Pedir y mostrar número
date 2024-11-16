@@ -1,0 +1,26 @@
+.data
+	mensaje: .asciiz "Introduce un número: "
+	mensaje2: .asciiz "Este es tu número: "
+.text
+.globl main
+main:
+	li $v0, 4
+	la $a0, mensaje
+	syscall
+
+	li $v0, 5
+	syscall
+
+	move $t0, $v0
+
+	li $v0, 4
+	la $a0, mensaje2
+	syscall
+
+	li $v0, 1
+	move $a0, $t0
+	syscall
+
+Fin:
+	li $v0, 10
+	syscall
