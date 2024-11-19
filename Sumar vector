@@ -1,6 +1,6 @@
 .data
-    vector: .word 5,6,7,8,9,10,-1
-    res: .space 4
+    vector: .word 5,6,7,8,9,10,-1  # Definición del vector
+    res: .space 4                 # Espacio para guardar el resultado final
 
 .text
 .globl main
@@ -19,5 +19,12 @@ finsi:  addi $t2, $t2, 4     # Pasar al siguiente elemento
         addi $t0, $t0, 1     # Incrementar el contador
         j para               # Repetir el bucle
 
-finpara: sw $t3, res         # Guardar el resultado en memoria
-         jr $31              # Terminar
+finpara: 
+        sw $t3, res          # Guardar el resultado en memoria
+
+        # Mostrar resultado en consola
+        li $v0, 1            # Syscall para imprimir un entero
+        move $a0, $t3        # Mover el resultado acumulado a $a0
+        syscall              # Llamar al sistema para imprimir
+
+        jr $31               # Terminar
