@@ -1,0 +1,33 @@
+.data
+Texto1:    .asciiz "Introduzca un entero (A): "
+A:         .word 0x80903344    # Dato de entrada
+R:         .word 0x33448090    # Resultado del intercambio esperado
+
+.align 2
+IntA:      .space 4
+Result1:   .space 8
+
+.text
+.globl main
+
+main:
+    la $a0, Texto1        # Cargar la dirección del texto en $a0
+    li $v0, 4             # Llamada al servicio para imprimir string
+    syscall
+
+    li $v0, 5             # Llamada al servicio para leer entero
+    syscall
+
+    la $t0, IntA
+    sw $v0, 0($t0)        # Guardar dato A en memoria
+    addi $s0, $v0, 0      # Guardar dato A en $s0
+
+    srl $t1, $s0, 16      # Desplazar 16 bits a la derecha para obtener los bits menos significativos
+    sll $t2, $s0, 16      # Desplazar 16 bits a la izquierda para obtener los bits más significativos
+    or $s1, $t1, $t2      # Combinar los dos valores para formar el número final
+
+    la $t0, R
+    sw $s1, 0($t0)        # Guardar resultado en memoria R
+
+    li $v0, 10            # Llamada al servicio para salir
+    syscall
