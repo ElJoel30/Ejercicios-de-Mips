@@ -1,0 +1,26 @@
+.data
+  palabra: .asciiz "Se van a cargar números: "
+  entero: .word 10
+  flotante: .float 15.0
+  double: .double 2.34
+.text
+.globl main
+    main:
+          li $v0, 4
+          la $a0, palabra
+          syscall
+          
+          li $v0, 1
+          lw $a0, entero
+          syscall
+          
+          li $v0, 2
+          lwc1 $f12, flotante
+          syscall
+          
+          li $v0, 3
+          ldc1 $f12, double
+          syscall
+          
+fin: li $v0, 10
+     syscall
