@@ -1,4 +1,4 @@
-DAR AL LÁPIZ PARA MEJOR LECTURA
+DAR AL LÁPIZ O A "CODE" PARA MEJOR LECTURA
 
 Estructura del código:
 .data
