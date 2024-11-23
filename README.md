@@ -1,3 +1,5 @@
+DAR AL LÁPIZ PARA MEJOR LECTURA
+
 Estructura del código:
 .data
     # Aquí se va a guardar la información en la memoria del procesador; las strings, los booleanos, los floats, los enteros.
