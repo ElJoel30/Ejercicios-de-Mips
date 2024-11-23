@@ -86,4 +86,72 @@ Cosas a tener en cuenta:
       ➢ la          # Indica a mips que va a cargar una string
       ➢ lwc1        # Indica a mips que va a cargar un flotante
       ➢ ldc1        # Indica a mips que va a cargar un double
-      
+
+
+#####################################################################################################################################################################################################################
+Almacenamiento
+
+Imáginemos que queremos hacer un ejercicio, donde pidamos al usuario que ingres un número y luego le digamos que este es su número:
+"Ingrasa un número: "
+"Este es tu número: 40"
+Bien pues para hacer este ejercicio debemos entender ciertas cosas:
+
+▶ ¿Qué es imprimir o cargar/mostar?
+Imprimir en mips lo interpretamos como en pytohn, hacer un print() de una constante: print("Hello world") ---> Hello world
+.data
+mensaje1: .asciiz "Introduce un numero: "
+.text
+    li $v0, 4         # Mostar mensaje1
+	la $a0, mensaje1
+	syscall
+
+▶ ¿Qué es leer y guardar?
+Leer es cargar un número (no tiene por que estar declarado) li $v0, 5 para posteriormente guardarlo en una variable que SI hemos declarado sw $v0, numero
+fijando que ahora ya no usamos un "4" para imprimir o cargar un entero, que ya está declarado, sino un "5" ya que indicamos que vamos a LEER entero
+
+.data
+    	numero: .word 0
+.text
+        li $v0, 5        # Lectura de un entero
+        syscall
+        sw $v0, numero    # Guarda el numero de la memoria v0 a la variable numero
+
+Bien, pues para resolver este ejercico podemos seguir esta estrucutura (inténtalo antes de ver la solución):
+    ◦ Cargar mensaje1
+    ◦ Leer entero + guardar
+    ◦ Cargar mensaje2
+    ◦ Cargar el número almacenado (recuerda que esto no es python, no salta de línea si no se lo dices, no te machaques la cabeza pensando más de la cuenta, no hay que 
+    encganchar mensaje2 con el guardado del número)
+
+Solución:
+.data
+	mensaje1: .asciiz "Introduce un numero: " 	# Mensaje1
+	mensaje2: .asciiz "\n Este es tu numero: "	# Mensaje2
+	numero: .word 0					# Variable vacía donde se va a almacenar el numero
+.text
+.globl main
+    main:
+	li $v0, 4         # Cargar mensaje1
+	la $a0, mensaje1
+	syscall
+    - 
+	li $v0, 5         # Leer entero del usuario, que se almacenerá en v0
+	syscall
+	sw $v0, numero    # Pasar el numero de v0 a la variable numero
+    -
+	li $v0, 4	  # Cargar mensaje2
+	la $a0, mensaje2
+	syscall
+    -
+	li $v0, 1	# Imprimir el entero
+	lw $a0, numero	# Cargar el numero almacenado
+	syscall
+	
+          
+fin: li $v0, 10
+     syscall
+
+*Nota*: Date cuenta que la memoria v0 siempre tiene que quedar vacia para poder seguir cargand otras datos v0 --> VARIABLE
+        Y para que se muestre el nuevo valor de numero tienes que imprimirlo
+
+        
