@@ -92,7 +92,9 @@ Cosas a tener en cuenta: ESTAS UNA GUIA; MEJOR DIRIJASE A LA RAMA DE "DECLARACIO
       ➢ ldc1        # Indica a mips que va a cargar un double
 
 ![Captura de pantalla 2024-11-25 104640](https://github.com/user-attachments/assets/0d9df29a-5224-499a-8349-0b6e177f918a)
-
+![image](https://github.com/user-attachments/assets/b65e0ad2-fc2f-499a-bac1-14e905ade35c)
+![Captura de pantalla 2024-11-25 105703](https://github.com/user-attachments/assets/10543ca5-84fd-4473-8d6a-c2f0b634dace)
+![Captura de pantalla 2024-11-25 105710](https://github.com/user-attachments/assets/f7365592-01ae-4fb6-9290-04f03281b8f3)
 
 ####################################################################################################################################################################################################################
 Almacenamiento
