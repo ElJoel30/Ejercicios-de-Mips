@@ -8,6 +8,8 @@ Estructura del código:
     # Aquí es dónde se va a ejecutar o imprimir la información, las funciones, mostrar en pantlla.
 
 main: # Etiqueta main, para estrcuturar mejor el código y sea más legible.
+resgistros_de_enteros: $a0, $t0
+resgistros_de_flotantes: $f0, $f12
 
 fin: li $v0, 10  # Esta etiqueta marca el fin de toda la "función" main, es como si fuera un return en python.
      syscall
@@ -83,12 +85,15 @@ Cosas a tener en cuenta:
    ◉ Palabras reservadas: 
       ➢ li          # Hace una llamada al .data
       ➢ lw          # Indica a mips que va a cargar un entero
+      ➢ sw	     # Mueve un valor de v0->(por ejemplo) a una variable
+      ➢ move	     # Palabra reservada para enteros, que mueves los valores de unas variables a otras move $t0, $v0
       ➢ la          # Indica a mips que va a cargar una string
       ➢ lwc1        # Indica a mips que va a cargar un flotante
       ➢ ldc1        # Indica a mips que va a cargar un double
 
 
-#####################################################################################################################################################################################################################
+
+####################################################################################################################################################################################################################
 Almacenamiento
 
 Imáginemos que queremos hacer un ejercicio, donde pidamos al usuario que ingres un número y luego le digamos que este es su número:
@@ -151,7 +156,14 @@ Solución:
 fin: li $v0, 10
      syscall
 
-*Nota*: Date cuenta que la memoria v0 siempre tiene que quedar vacia para poder seguir cargand otras datos v0 --> VARIABLE
-        Y para que se muestre el nuevo valor de numero tienes que imprimirlo
+*Nota*: - Date cuenta que la memoria v0 es un valor en el cual se guarda temporalmente los enteros y las strings, por eso tenemos que mover el valor temporal de v0 --> VARIABLE
+		pero en los flotantes y doubles en vez de ser "v0" es "f0"
+        - Y para que se muestre el nuevo valor de numero tienes que imprimirlo
+	- Hay otra forma de hacerlo que es sin tener que declarar una variable numero, para almacenar el dato, utilizar "move" en vez de "sw": 
+ 		li $v0, 5
+   		move $t0, $v0
+     		syscall
+        - Cabe recalcar que si para leer un entero utilizamos el "5" (li $v0, 5) para un flotante usaremos el "6"; para un double el "7"; y para una string el "8"
 
-        
+ ####################################################################################################################################################################################################################
+Vamos a comenzar
