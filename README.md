@@ -77,7 +77,7 @@ fin: li $v0, 10
 
 
 
-Cosas a tener en cuenta:
+Cosas a tener en cuenta: ESTAS UNA GUIA; MEJOR DIRIJASE A LA RAMA DE "DECLARACIONES" DONDE ESTA TODO 
    ◉ Reserva de mips
       ➢ $v0         # Memoria que preferiblemente siempre tiene que estar vacía
       ➢ $a0         # Para mostrar en pantalla los enteros y las strings
