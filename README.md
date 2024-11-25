@@ -91,6 +91,7 @@ Cosas a tener en cuenta: ESTAS UNA GUIA; MEJOR DIRIJASE A LA RAMA DE "DECLARACIO
       ➢ lwc1        # Indica a mips que va a cargar un flotante
       ➢ ldc1        # Indica a mips que va a cargar un double
 
+![Captura de pantalla 2024-11-25 104640](https://github.com/user-attachments/assets/0d9df29a-5224-499a-8349-0b6e177f918a)
 
 
 ####################################################################################################################################################################################################################
