@@ -169,4 +169,77 @@ fin: li $v0, 10
         - Cabe recalcar que si para leer un entero utilizamos el "5" (li $v0, 5) para un flotante usaremos el "6"; para un double el "7"; y para una string el "8"
 
  ####################################################################################################################################################################################################################
-Vamos a comenzar
+5. Vamos a comenzar con las Instrucciones aritméticas, lógicas y de desplazamiento.
+( Para encontrar ejercicios de suma, resta... Ir a la sección de ejercicio 5. Intrucciones artiméticas ) 
+La siguiente tabla resume las cuatro operaciones básicas: suma, resta, multiplicación y división. 
+****
+Vamos ha hacer un ejercicio que haga una suma, una resta... Pero primero este será el caso base, que tendremos que hacer siempre para resolver ejercicios de este tipo:
+
+.data               
+    prompt1: .asciiz "Introduce el primer número: "  		# Mensaje para el primer número
+    prompt2: .asciiz "Introduce el segundo número: " 		# Mensaje para el segundo número
+    result_msg: .asciiz "El resultado de sumar es: "            # Mensaje para mostrar el resultado
+# Recuerda cambiar el texto de resltado para que se adecue a la operación
+.text               
+    .globl main      
+
+main:
+
+    li $v0, 4            # Cargar el código de servicio para imprimir una cadena
+    la $a0, prompt1      # Cargar la dirección de la cadena prompt1
+    syscall              
+    
+    li $v0, 5            # Cargar el código de servicio para leer un entero
+    syscall              # Llamada al sistema (leer entero)
+    move $t0, $v0        # Guardar el primer número en $t0
+
+    
+    li $v0, 4            # Cargar el código de servicio para imprimir una cadena
+    la $a0, prompt2      # Cargar la dirección de la cadena prompt2
+    syscall              # Llamada al sistema (imprimir mensaje)
+
+    
+    li $v0, 5            # Cargar el código de servicio para leer un entero
+    syscall              # Llamada al sistema (leer entero)
+    move $t1, $v0        # Guardar el segundo número en $t1
+ # Esta siempre sera la parte cambiante, ya que ahora queremos que sume, pero si queremos que reste solo tendremos que cambiar la intrucción
+ # add $t2, $t0, $t1    # Sumar los valores de $t0 y $t1 y guardar el resultado en $t2
+
+    
+    li $v0, 4            # Cargar el código de servicio para imprimir una cadena
+    la $a0, result_msg   # Cargar la dirección de la cadena result_msg
+    syscall              # Llamada al sistema (imprimir mensaje)
+
+    
+    li $v0, 1            # Cargar el código de servicio para imprimir un entero
+    move $a0, $t2        # Pasar el resultado de la suma (en $t2) a $a0
+    syscall              # Llamada al sistema (imprimir el entero)
+
+# Para restar
+# Haremos: sub $t2, $t0, $t1
+# Para dividir
+# Haremos: div $t2, $t0, $t1 Si hay una division impar, al ser enteros nos redondeara al menor: 13/2 = 6
+# Para multiplicar
+# Haremos: mul $t2, $t0, $t1
+# Recuerda ver bien la tabla, dado que dependiendo lo que necesites tendras que utilizar una instrucción u otra.
+
+####################################################################################################################################################################################################################
+									# PARTE MÁS IMPORTANTE
+####################################################################################################################################################################################################################
+6. Estructuras de control: Saltos condicionales e incondicionales
+Este apartado se divide en tres grandes grupos: Condicionales, Bucles mientras y Bucles para.
+
+# CONDICIONALES
+Algoritmos:
+	Si (condición) entonces
+ 		accion1
+	si no
+ 		acción2
+	fin si
+
+
+Si a=b entonces
+ c=a
+si no
+ c=a+b
+fin si
